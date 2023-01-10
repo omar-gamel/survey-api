@@ -1,14 +1,13 @@
-import { Strategy, ExtractJwt } from 'passport-jwt';
-import passport from 'passport';
-
-import User from '../models/user';
+import jwt from 'passport-jwt';
 import config from 'config';
+import passport from 'passport';
+import User from '../models/user.js';
 
 const params = {
   secretOrKey: config.get('jwtSecret'),
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  jwtFromRequest: jwt.ExtractJwt.fromAuthHeaderAsBearerToken(),
 };
-const strategy = new Strategy(params, async (jwt_payload, done) => {
+const strategy = new jwt.Strategy(params, async (jwt_payload, done) => {
   try {
     const user = await User.findById({
       _id: jwt_payload._id,

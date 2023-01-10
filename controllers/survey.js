@@ -1,4 +1,4 @@
-import Survey from '../models/survey';
+import Survey from '../models/survey.js';
 
 export default {
   async create(req, res, next) {

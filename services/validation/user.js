@@ -1,6 +1,6 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
-exports.validateUser = (user) => {
+const validateUser = (user) => {
   const schema = {
     name: Joi.string().not().min(5).max(50).empty().required(),
     email: Joi.string()
@@ -21,12 +21,12 @@ exports.validateUser = (user) => {
     semester: Joi.number().not().empty().required().valid(1, 2),
     mobile: Joi.number().not().empty().required(),
     city: Joi.string().not().min(5).max(50).empty().required(),
-    // avatar: Joi.string().not().empty().uri().required()
+    avatar: Joi.string().not().empty().required()
   };
   return Joi.validate(user, schema);
 };
 
-exports.validateLogin = (user) => {
+const validateLogin = (user) => {
   const schema = {
     email: Joi.string()
       .not()
@@ -41,10 +41,20 @@ exports.validateLogin = (user) => {
   return Joi.validate(user, schema);
 };
 
-exports.validateChangePassword = (user) => {
-  const schema = {
-    password: Joi.string().not().empty().min(5).max(50).required(),
-    newPassword: Joi.string().not().empty().min(5).max(50).required(),
-  };
-  return Joi.validate(user, schema);
-};
+// const validateChangePassword = (user) => {
+//   const schema = {
+//     password: Joi.string().not().empty().min(5).max(50).required(),
+//     newPassword: Joi.string().not().empty().min(5).max(50).required(),
+//   };
+//   return Joi.validate(user, schema);
+// };
+
+// exports.validateUser = validateUser;
+// exports.validateLogin = validateLogin;
+// exports.validateChangePassword = validateChangePassword;
+
+// {
+//   validateUser, validateLogin, validateChangePassword;
+// }
+
+export default validateUser;

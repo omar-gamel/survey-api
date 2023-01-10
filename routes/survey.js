@@ -1,5 +1,5 @@
 import express from 'express';
-import surveyController from '../controllers/survey';
+import surveyController from '../controllers/survey.js';
 
 const router = express.Router();
 

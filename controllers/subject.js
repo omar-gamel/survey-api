@@ -1,11 +1,11 @@
-import { validateSubject } from '../services/validation/subject';
-import Subject from '../models/subject';
+import  validateSubject  from '../services/validation/subject.js';
+import Subject from '../models/subject.js';
 
 export default {
     async create(req, res, next) {
-      const { error } = validateSubject(req.body); 
+      const { error } = validateSubject(req.body);
       try {
-        if (error) 
+        if (error)
           return res.send({ success: false, message: error.details[0].message });
         await new Subject({
           name: req.body.name,
@@ -29,13 +29,13 @@ export default {
     },
     async update(req, res, next) {
       const { subjectId } = req.params;
-      const { error } = validateSubject(req.body); 
+      const { error } = validateSubject(req.body);
       try {
         const subject = await Subject.findById(subjectId);
         if(!subject)
             return res.send({ success: false, message: 'No subject found with the provided id' });
 
-        if (error) 
+        if (error)
             return res.send({ success: false, message: error.details[0].message });
 
         const updateSubject = {
@@ -55,7 +55,7 @@ export default {
       let { subjectId } = req.params;
       try {
           const subject = await Subject.findById(subjectId);
-          if (!subject) 
+          if (!subject)
               return res.send({ success: false, message: 'Subject not Found.' });
 
           await Subject.deleteOne({ _id: subjectId });
@@ -67,7 +67,7 @@ export default {
     async getSubject(req, res, next) {
       try {
         const subject = await Subject.findById(req.params.subjectId);
-        if (!subject) 
+        if (!subject)
             return res.send({ success: false, message: 'Subject not Found.' });
 
         res.status(200).send(subject);
@@ -83,11 +83,11 @@ export default {
           semester: req.user.semester
         };
         const subjects = await Subject.find(filter);
-        if (!subjects) 
+        if (!subjects)
           return res.send({ success: false, message: 'No subject found' });
         res.send({ success: true, subjects: subjects });
       } catch (error) {
         next(error);
       }
     }
-}    
+}

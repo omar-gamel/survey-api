@@ -1,8 +1,7 @@
-const Joi = require('joi');
-
-exports.validateSubject = (subject) => {
+import Joi from 'joi';
+const validateSubject = (subject) => {
   const schema = {
-    name: Joi.string().not().min(5).max(50).empty().required(),
+    name:  Joi.string().not().min(5).max(50).empty().required(),
     instructor: Joi.string().not().min(5).max(50).empty().required(),
     department: Joi.string()
       .not()
@@ -14,3 +13,5 @@ exports.validateSubject = (subject) => {
   };
   return Joi.validate(subject, schema);
 };
+
+export default validateSubject;

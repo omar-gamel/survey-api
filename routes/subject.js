@@ -1,6 +1,6 @@
 import express from 'express';
-import subjectController from '../controllers/subject';
-import jwtAuth from '../services/passport';
+import subjectController from '../controllers/subject.js';
+import jwtAuth from '../services/passport.js';
 
 const router = express.Router();
 

@@ -1,5 +1,5 @@
-import { validateQuestion } from '../services/validation/question';
-import Question from '../models/question';
+import  validateQuestion  from '../services/validation/question.js';
+import Question from '../models/question.js';
 
 export default {
   async create(req, res, next) {
